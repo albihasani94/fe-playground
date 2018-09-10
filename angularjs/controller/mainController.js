@@ -15,7 +15,7 @@
         $scope.person = person;
     };
 
-    var testHttpController = function ($scope, githubService, $interval, $log, $anchorScroll, $location) {
+    var githubController = function ($scope, githubService, $interval, $log, $anchorScroll, $location) {
 
         var onUserComplete = function (data) {
             $scope.user = data;
@@ -37,31 +37,13 @@
             $log.info("Searching for " + username);
             githubService.getUser(username)
                 .then(onUserComplete, onRequestError);
-            if (countdownInterval) {
-                $interval.cancel(countdownInterval);
-                $scope.countdown = null;
-            }
-        }
-
-        var decrementCountdown = function () {
-            $scope.countdown -= 1;
-            if ($scope.countdown < 1) {
-                $scope.search($scope.username);
-            }
-        }
-
-        var countdownInterval = null;
-        var startCountdown = function () {
-            countdownInterval = $interval(decrementCountdown, 1000, $scope.countdown);
         }
 
         $scope.repoSortOrder = '-stargazers_count';
-        //$scope.countdown = 5;
-        //startCountdown();
     };
 
     app.controller("mainController", mainController);
     app.controller("personController", personController);
-    app.controller("testHttpController", testHttpController);
+    app.controller("githubController", githubController);
 
 })();

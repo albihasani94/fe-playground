@@ -4,7 +4,7 @@
 <head>
     <title>My angularjs app</title>
     <script data-require="angular.js@1.5.8" data-semver="1.5.8" src="https://code.angularjs.org/1.5.8/angular.js"></script>
-    <script src="js/script.js"></script>
+    <!-- <script src="js/script.js"></script> -->
     <script src="controller/mainController.js"></script>
     <script src="service/githubService.js"></script>
 </head>
@@ -18,7 +18,7 @@
         <div><img ng-src="{{person.imageSrc}}" title="{{person.firstName}} {{person.lastName}}"></div>
     </div>
 
-    <div ng-controller="testHttpController">
+    <div ng-controller="githubController">
 
         <div>{{countdown}}</div>
 
