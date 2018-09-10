@@ -16,17 +16,27 @@
     };
 
     var testHttpController = function($scope, $http) {
-        var promise = $http.get("https://api.github.com/users/albihasani94");
 
         var onUserComplete = function(response) {
             $scope.user = response.data;
+            $http.get($scope.user.repos_url)
+                .then(onRepos, onRequestError);
+        }
+
+        var onRepos = function(response) {
+            $scope.repos = response.data;
         }
 
         var onRequestError = function(cause) {
-            $scope.error = "Could not fetch user";
+            $scope.error = "Could not fetch data";
         }
 
-        promise.then(onUserComplete, onRequestError);
+        $scope.search = function(username) {
+            $http.get("https://api.github.com/users/" + username)
+                .then(onUserComplete, onRequestError);
+        }
+
+        $scope.repoSortOrder = '-stargazers_count';
     };
 
     app.controller("mainController", mainController);

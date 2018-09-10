@@ -18,16 +18,16 @@
     </div>
 
     <div ng-controller="testHttpController">
-        <div>
-            Name: {{user.name}}
-        </div>
-        <div>
-            Company: {{user.company}}
-        </div>
-        <div>
-            <img ng-src="{{user.avatar_url}}" title="{{user.name}}">
-        </div>
+
         <div>{{error}}</div>
+
+        <form name="searchUser" ng-submit="search(username)">
+            <input type="search" placeholder="Username to find" required ng-model="username">
+            <input type="submit" value="Search">
+        </form>
+
+        <div ng-include="'userdetails.html'" ng-show="user"></div>
+
     </div>
 </body>
 
