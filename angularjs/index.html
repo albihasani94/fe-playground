@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html ng-app="controllerModule">
+<html ng-app="mainModule">
 
 <head>
     <title>My angularjs app</title>
     <script data-require="angular.js@1.5.8" data-semver="1.5.8" src="https://code.angularjs.org/1.5.8/angular.js"></script>
     <script src="js/script.js"></script>
     <script src="controller/mainController.js"></script>
+    <script src="service/githubService.js"></script>
 </head>
 
 <body>
@@ -19,6 +20,8 @@
 
     <div ng-controller="testHttpController">
 
+        <div>{{countdown}}</div>
+
         <div>{{error}}</div>
 
         <form name="searchUser" ng-submit="search(username)">
@@ -26,7 +29,7 @@
             <input type="submit" value="Search">
         </form>
 
-        <div ng-include="'userdetails.html'" ng-show="user"></div>
+        <div ng-include="'html/userdetails.html'" ng-show="user"></div>
 
     </div>
 </body>

@@ -1,12 +1,12 @@
-(function() {
+(function () {
 
-    var app = angular.module('controllerModule', []);
+    var app = angular.module('mainModule', []);
 
-    var mainController = function($scope) {
+    var mainController = function ($scope) {
         $scope.message = "Hello, AngularJS";
     };
 
-    var personController = function($scope) {
+    var personController = function ($scope) {
         var person = {
             firstName: "John",
             lastName: "Cena",
@@ -15,28 +15,49 @@
         $scope.person = person;
     };
 
-    var testHttpController = function($scope, $http) {
+    var testHttpController = function ($scope, githubService, $interval, $log, $anchorScroll, $location) {
 
-        var onUserComplete = function(response) {
-            $scope.user = response.data;
-            $http.get($scope.user.repos_url)
+        var onUserComplete = function (data) {
+            $scope.user = data;
+            githubService.getRepos($scope.user)
                 .then(onRepos, onRequestError);
         }
 
-        var onRepos = function(response) {
-            $scope.repos = response.data;
+        var onRepos = function (data) {
+            $scope.repos = data;
+            $location.hash("userdetails");
+            $anchorScroll();
         }
 
-        var onRequestError = function(cause) {
+        var onRequestError = function (cause) {
             $scope.error = "Could not fetch data";
         }
 
-        $scope.search = function(username) {
-            $http.get("https://api.github.com/users/" + username)
+        $scope.search = function (username) {
+            $log.info("Searching for " + username);
+            githubService.getUser(username)
                 .then(onUserComplete, onRequestError);
+            if (countdownInterval) {
+                $interval.cancel(countdownInterval);
+                $scope.countdown = null;
+            }
+        }
+
+        var decrementCountdown = function () {
+            $scope.countdown -= 1;
+            if ($scope.countdown < 1) {
+                $scope.search($scope.username);
+            }
+        }
+
+        var countdownInterval = null;
+        var startCountdown = function () {
+            countdownInterval = $interval(decrementCountdown, 1000, $scope.countdown);
         }
 
         $scope.repoSortOrder = '-stargazers_count';
+        //$scope.countdown = 5;
+        //startCountdown();
     };
 
     app.controller("mainController", mainController);
