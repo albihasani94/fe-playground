@@ -17,9 +17,17 @@
                 });
         };
 
+        var getRepositoryWithDetails = function (username, repositoryName) {
+            return $http.get("https://api.github.com/repos/" + username + "/" + repositoryName)
+                .then(function (response) {
+                    return response.data;
+                })
+        };
+
         return {
             getUser: getUser,
-            getRepos: getRepos
+            getRepos: getRepos,
+            getRepositoryWithDetails: getRepositoryWithDetails
         };
 
     };

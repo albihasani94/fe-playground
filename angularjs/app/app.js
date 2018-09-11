@@ -16,6 +16,10 @@
                 templateUrl: "html/githubUser.html",
                 controller: "userController"
             })
+            .when("/repository/:username/:repositoryName", {
+                templateUrl: "html/githubRepository.html",
+                controller: "repositoryController"
+            })
             .otherwise({ redirectTo: "/main" });
     });
 
