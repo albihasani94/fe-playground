@@ -15,7 +15,7 @@
         $scope.person = person;
     };
 
-    var githubController = function ($scope, githubService, $interval, $log, $anchorScroll, $location) {
+    var githubController = function ($scope, githubService, $log, $anchorScroll, $location) {
 
         var onUserComplete = function (data) {
             $scope.user = data;
