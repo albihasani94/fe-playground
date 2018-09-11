@@ -1,3 +1,4 @@
+// just the IIFE pattern
 (function () {
     var createWorker = function () {
         var task1 = function () {

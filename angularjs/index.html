@@ -4,34 +4,17 @@
 <head>
     <title>My angularjs app</title>
     <script data-require="angular.js@1.5.8" data-semver="1.5.8" src="https://code.angularjs.org/1.5.8/angular.js"></script>
-    <!-- <script src="js/script.js"></script> -->
-    <script src="controller/mainController.js"></script>
+    <script data-require="angular-route@1.5.8" data-semver="1.5.8" src="https://code.angularjs.org/1.5.8/angular-route.js"></script>
+    <script src="app/app.js"></script>
     <script src="service/githubService.js"></script>
+    <script src="controller/mainController.js"></script>
+    <script src="controller/dummyController.js"></script>
+    <script src="controller/userController.js"></script>
+    <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 
 <body>
-    <h1 ng-controller="mainController">{{message}}</h1>
-
-    <div ng-controller="personController">
-        <div>First name: {{person.firstName}}</div>
-        <div>Last Name: {{person.lastName}}</div>
-        <div><img ng-src="{{person.imageSrc}}" title="{{person.firstName}} {{person.lastName}}"></div>
-    </div>
-
-    <div ng-controller="githubController">
-
-        <div>{{countdown}}</div>
-
-        <div>{{error}}</div>
-
-        <form name="searchUser" ng-submit="search(username)">
-            <input type="search" placeholder="Username to find" required ng-model="username">
-            <input type="submit" value="Search">
-        </form>
-
-        <div ng-include="'html/userdetails.html'" ng-show="user"></div>
-
-    </div>
+    <div ng-view></div>
 </body>
 
 </html>

@@ -1,8 +1,9 @@
 (function () {
 
-    var githubService = function ($http) {
+    var githubService = function ($http, $log) {
 
         var getUser = function (username) {
+            $log.info("Searching for username: " + username);
             return $http.get("https://api.github.com/users/" + username)
                 .then(function (response) {
                     return response.data;
