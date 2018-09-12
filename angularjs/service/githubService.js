@@ -24,10 +24,18 @@
                 })
         };
 
+        var getRepositoryContributors = function (repository) {
+            return $http.get(repository.contributors_url)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
+
         return {
             getUser: getUser,
             getRepos: getRepos,
-            getRepositoryWithDetails: getRepositoryWithDetails
+            getRepositoryWithDetails: getRepositoryWithDetails,
+            getRepositoryContributors: getRepositoryContributors
         };
 
     };

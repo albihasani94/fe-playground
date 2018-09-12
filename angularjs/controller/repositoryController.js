@@ -6,6 +6,12 @@
 
         var onRepoComplete = function (data) {
             $scope.repository = data;
+            githubService.getRepositoryContributors($scope.repository)
+                .then(onContributors, onRequestError);
+        }
+
+        var onContributors = function (data) {
+            $scope.contributors = data;
         }
 
         var onRequestError = function (cause) {
