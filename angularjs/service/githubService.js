@@ -18,24 +18,21 @@
         };
 
         var getRepositoryWithDetails = function (username, repositoryName) {
+            var repository;
             return $http.get("https://api.github.com/repos/" + username + "/" + repositoryName)
                 .then(function (response) {
-                    return response.data;
-                })
+                    repository = response.data;
+                    return $http.get(repository.contributors_url);
+                }).then(function(response) {
+                    repository.contributors = response.data;
+                    return repository;
+                });
         };
-
-        var getRepositoryContributors = function (repository) {
-            return $http.get(repository.contributors_url)
-                .then(function (response) {
-                    return response.data;
-                })
-        }
 
         return {
             getUser: getUser,
             getRepos: getRepos,
-            getRepositoryWithDetails: getRepositoryWithDetails,
-            getRepositoryContributors: getRepositoryContributors
+            getRepositoryWithDetails: getRepositoryWithDetails
         };
 
     };

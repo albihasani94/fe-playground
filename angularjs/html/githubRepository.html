@@ -9,7 +9,7 @@
         <p>Forks: {{repository.forks}}</p>
         <p>Issues: {{repository.open_issues}}</p>
         <p ng-show="repository.homepage">Website: <a href="{{repository.homepage}}">{{repository.homepage}}</a></p>
-        <div ng-repeat="contributor in contributors">
+        <div ng-repeat="contributor in repository.contributors">
             <img ng-src="{{contributor.avatar_url}}" title="{{contributor.login}}">
             <p>Username: {{contributor.login}}</p>
             <p>URL: <a href="{{contributor.html_url}}">{{contributor.html_url}}</a></p>
