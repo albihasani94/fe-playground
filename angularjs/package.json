@@ -1,0 +1,15 @@
+{
+  "name": "my-angularjs-application",
+  "version": "0.0.1",
+  "description": "Demo angular 1.x application",
+  "scripts": {
+    "prestart": "node build/startMessage.js",
+    "start": "http-server"
+  },
+  "author": "albihasani94",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "chalk": "2.4.1"
+  }
+}
