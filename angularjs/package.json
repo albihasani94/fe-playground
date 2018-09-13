@@ -4,7 +4,7 @@
   "description": "Demo angular 1.x application",
   "scripts": {
     "prestart": "node build/startMessage.js",
-    "start": "http-server"
+    "start": "http-server -o"
   },
   "author": "albihasani94",
   "license": "MIT",
