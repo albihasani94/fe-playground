@@ -1,9 +1,13 @@
 ## Running the application
 
-Install http-server via npm
+Change to angularjs directory
 
-`npm install http-server -g`
+`cd angularjs`
 
-Run the server
+Install npm dependencies
 
-`http-server`
+`npm install`
+
+Run the npm start goal
+
+`npm start`
